@@ -10,3 +10,14 @@ def test_IngresaLetraYAcierta():
     assert snap["palabra_oculta"].split()[0] == "p"
     assert "p" in snap["letras_correctas"]
     assert g.estado_partida() == "en progreso"
+
+
+def test_IngresaLetraYNoAcierta():
+    g = AhorcadoGame()
+    snap = g.ingresar_letra("z")
+
+    assert snap["acierto"] is False
+    assert snap["errores"] == 1
+    assert "z" in snap["letras_incorrectas"]
+    assert "z" not in snap["letras_correctas"]
+    assert g.estado_partida() == "en progreso"
