@@ -1,6 +1,6 @@
 # tests/test_ahorcado_tdd.py
 import pytest
-from ahorcado import AhorcadoGame
+from ahorcado import JuegoAhorcado as AhorcadoGame
 
 def test_IngresaLetraYAcierta():
     """
