@@ -39,6 +39,30 @@ class JuegoAhorcado:
     def mostrar_palabra(self):
         return " ".join(c if c in self.letras_correctas else "_" for c in self.palabra_objetivo)
 
+
+    def ingresar_palabra(self, palabra: str):
+        intento = palabra.lower()
+        if intento == self.palabra_objetivo:
+            self.letras_correctas.update(set(self.palabra_objetivo))
+            return {
+                "acierto": True,
+                "palabra_oculta": self.palabra_objetivo,
+                "errores": self.errores,
+                "letras_correctas": list(self.letras_correctas),
+                "letras_incorrectas": list(self.letras_incorrectas),
+                "resultado": "ganaste"
+            }
+        else:
+            self.errores += 1
+            return {
+                "acierto": False,
+                "palabra_oculta": self.mostrar_palabra(),
+                "errores": self.errores,
+                "letras_correctas": list(self.letras_correctas),
+                "letras_incorrectas": list(self.letras_incorrectas),
+                "resultado": self.estado_partida()
+            }
+        
     def estado_partida(self):
         if all(c in self.letras_correctas for c in self.palabra_objetivo):
             return "ganaste"
