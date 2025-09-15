@@ -1,5 +1,3 @@
-# ahorcado.py
-
 class JuegoAhorcado:
     def __init__(self):
         self.palabra_objetivo = "perro"
@@ -9,6 +7,17 @@ class JuegoAhorcado:
 
     def ingresar_letra(self, letra: str):
         ch = letra.lower()
+
+        # 🔹 NUEVO: si la letra ya fue probada, no cambia nada
+        if ch in self.letras_correctas or ch in self.letras_incorrectas:
+            return {
+                "acierto": None,  # ni acierto ni error
+                "palabra_oculta": self.mostrar_palabra(),
+                "errores": self.errores,
+                "letras_correctas": list(self.letras_correctas),
+                "letras_incorrectas": list(self.letras_incorrectas),
+                "resultado": self.estado_partida()
+            }
 
         if ch in self.palabra_objetivo:
             self.letras_correctas.add(ch)
@@ -37,7 +46,6 @@ class JuegoAhorcado:
             return "perdiste"
         return "en progreso"
 
-
 if __name__ == "__main__":
     juego = JuegoAhorcado()
     print("Palabra oculta:", juego.mostrar_palabra())
@@ -47,6 +55,10 @@ if __name__ == "__main__":
 
     print("\nIntentando 'z'")
     print(juego.ingresar_letra("z"))
+
+    
+    print("\nIntentando 'p'")
+    print(juego.ingresar_letra("p"))
 
     print("\nEstado final:")
     print("Palabra:", juego.mostrar_palabra())
