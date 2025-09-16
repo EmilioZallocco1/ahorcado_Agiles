@@ -8,10 +8,10 @@ class JuegoAhorcado:
     def ingresar_letra(self, letra: str):
         ch = letra.lower()
 
-    
         if ch in self.letras_correctas or ch in self.letras_incorrectas:
             return {
-                "acierto": None, 
+                "acierto": None,
+                "palabra_oculta": self.mostrar_palabra(),  # ← agregado
                 "errores": self.errores,
                 "letras_correctas": list(self.letras_correctas),
                 "letras_incorrectas": list(self.letras_incorrectas),
@@ -27,12 +27,11 @@ class JuegoAhorcado:
 
         return {
             "acierto": acierto,
+            "palabra_oculta": self.mostrar_palabra(),      # ← agregado
             "errores": self.errores,
             "letras_correctas": list(self.letras_correctas),
             "letras_incorrectas": list(self.letras_incorrectas),
         }
-
-  
 
     def ingresar_palabra(self, palabra: str):
         intento = palabra.lower()
@@ -54,7 +53,10 @@ class JuegoAhorcado:
                 "letras_correctas": list(self.letras_correctas),
                 "letras_incorrectas": list(self.letras_incorrectas),
             }
-        
-  
 
+    
+    def mostrar_palabra(self):
+        return " ".join(c if c in self.letras_correctas else "_" for c in self.palabra_objetivo)
+
+    
 

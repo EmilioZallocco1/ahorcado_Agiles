@@ -61,3 +61,14 @@ def test_IngresaPalabraVacia():
     snap = g.ingresar_palabra("")
     assert snap["acierto"] is False
     assert snap["errores"] == 1
+
+
+def test_VisualizarAcierto():
+    g = AhorcadoGame()
+    snap = g.ingresar_letra("r")  # aparece dos veces en "perro"
+
+    assert snap["acierto"] is True
+    assert snap["palabra_oculta"] == "_ _ r r _"
+    assert "r" in snap["letras_correctas"]
+    assert snap["errores"] == 0
+    assert g.mostrar_palabra() == "_ _ r r _"
