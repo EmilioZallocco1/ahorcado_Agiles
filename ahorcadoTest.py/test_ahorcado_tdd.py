@@ -1,7 +1,7 @@
 # tests/test_ahorcado_tdd.py
 from ahorcado import JuegoAhorcado as AhorcadoGame
 
-def test_ingresaLetraYAcierta():
+def test_IngresaLetraYAcierta():
     g = AhorcadoGame()
     snap = g.ingresar_letra("p")
 
@@ -12,7 +12,7 @@ def test_ingresaLetraYAcierta():
     assert g.estado_partida() == "en progreso"
 
 
-def test_ingresaLetraYNoAcierta():
+def test_IngresaLetraYNoAcierta():
     g = AhorcadoGame()
     snap = g.ingresar_letra("z")
 
@@ -23,7 +23,7 @@ def test_ingresaLetraYNoAcierta():
     assert g.estado_partida() == "en progreso"
 
 
-def test_ingresaLetraYSeRepite():
+def test_IngresaLetraYSeRepite():
     g = AhorcadoGame()
 
     # primer intento: acierta
@@ -39,6 +39,7 @@ def test_ingresaLetraYSeRepite():
     assert "p" in snap2["letras_correctas"]  # sigue marcada
     assert g.estado_partida() == "en progreso"
 
+
 def test_ingresaPalabraYAcierta():
     g = AhorcadoGame()
     snap = g.ingresar_palabra("perro")
@@ -51,3 +52,11 @@ def test_ingresaPalabraYAcierta():
     assert "r" in snap["letras_correctas"]
     assert "o" in snap["letras_correctas"]
     assert g.estado_partida() == "ganaste"
+
+def test_IngresaPalabraYNoAcierta():
+    g = AhorcadoGame()
+    snap = g.ingresar_palabra("perra")
+
+    assert snap["acierto"] is False
+    assert snap["errores"] == 1
+    assert g.estado_partida() == "en progreso"
