@@ -86,4 +86,17 @@ def test_VisualizarError():
     assert g.mostrar_palabra() == "_ _ _ _ _"
 
 
+def test_QuitarVidasYnoQuedanMas():
+    g = AhorcadoGame()
+
+    # 6 letras incorrectas (ninguna está en "perro")
+    for ch in ["a", "b", "c", "d", "f", "g"]:
+        snap = g.ingresar_letra(ch)
+
+    # Al agotar vidas 
+    assert snap["acierto"] is False
+    assert snap["errores"] == 6
+    assert snap["palabra_oculta"] == "_ _ _ _ _"
+
+
 
