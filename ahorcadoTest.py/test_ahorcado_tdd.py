@@ -110,3 +110,11 @@ def test_QuitarVidaYQuedanMas():
     assert "x" in snap["letras_incorrectas"]
     assert snap["palabra_oculta"] == "_ _ _ _ _"
 
+
+def test_GanoYMuestraQueGane():
+    g = AhorcadoGame()
+    snap = g.ingresar_palabra("perro") 
+
+    assert snap["acierto"] is True
+    assert snap["palabra_oculta"] == "perro"
+    assert g.estado_partida() == "ganaste"

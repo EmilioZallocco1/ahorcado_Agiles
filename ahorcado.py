@@ -5,6 +5,12 @@ class JuegoAhorcado:
         self.letras_incorrectas = set()
         self.errores = 0
 
+    def estado_partida(self):
+        if all(c in self.letras_correctas for c in self.palabra_objetivo):
+            return "ganaste"
+        if self.vidas == 0:
+            return "perdiste"
+
     def ingresar_letra(self, letra: str):
         ch = letra.lower()
 
