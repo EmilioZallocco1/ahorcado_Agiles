@@ -73,3 +73,4 @@ class JuegoAhorcado:
 
     def mostrar_palabra(self):
         return " ".join(c if c in self.letras_correctas else "_" for c in self.palabra_objetivo)
+#

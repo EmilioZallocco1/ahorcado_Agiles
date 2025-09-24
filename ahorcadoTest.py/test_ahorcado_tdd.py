@@ -100,6 +100,7 @@ def test_QuitarVidasYnoQuedanMas():
 
 
 
+
 def test_QuitarVidaYQuedanMas():
     g = AhorcadoGame()
 
@@ -110,6 +111,19 @@ def test_QuitarVidaYQuedanMas():
     assert "x" in snap["letras_incorrectas"]
     assert snap["palabra_oculta"] == "_ _ _ _ _"
 
+
+
+def test_PierdoymuestroQuePerdi():
+    g = AhorcadoGame()
+
+    
+    for ch in ["a", "b", "c", "d", "f", "g"]:
+        snap = g.ingresar_letra(ch)
+
+   
+    assert snap["acierto"] is False
+    assert snap["errores"] == 6
+    assert snap["palabra_oculta"] == "_ _ _ _ _"
 
 def test_GanoYMuestraQueGane():
     g = AhorcadoGame()
