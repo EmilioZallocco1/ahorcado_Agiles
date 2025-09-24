@@ -100,3 +100,13 @@ def test_QuitarVidasYnoQuedanMas():
 
 
 
+def test_QuitarVidaYQuedanMas():
+    g = AhorcadoGame()
+
+    snap = g.ingresar_letra("x")  # incorrecta
+
+    assert snap["acierto"] is False
+    assert snap["errores"] == 1     # perdió 1, quedan 5 (Tenemos 6 errores, como max vida. Con un error quedan 5)
+    assert "x" in snap["letras_incorrectas"]
+    assert snap["palabra_oculta"] == "_ _ _ _ _"
+
