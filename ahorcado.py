@@ -8,8 +8,9 @@ class JuegoAhorcado:
     def estado_partida(self):
         if all(c in self.letras_correctas for c in self.palabra_objetivo):
             return "ganaste"
-        if self.vidas == 0:
+        if self.errores >= 6:   # o el número de errores que define la derrota
             return "perdiste"
+
 
     def ingresar_letra(self, letra: str):
         ch = letra.lower()
