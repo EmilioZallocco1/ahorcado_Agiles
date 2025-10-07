@@ -26,4 +26,4 @@ jobs:
 
       - name: Check syntax
         run: |
-          python -m py_compile $(find . -name "*.py")
+          find . -type f -name "*.py" -exec python -m py_compile {} +
