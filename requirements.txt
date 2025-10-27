@@ -1,2 +1,3 @@
 fastapi
 uvicorn
+pytest-bdd>=6.1.1
