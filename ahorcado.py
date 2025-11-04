@@ -1,8 +1,12 @@
+import random
+
 class JuegoAhorcado:
     MAX_ERRORES = 6
+    PALABRAS = ["perro", "gato", "casa", "flor"]
 
-    def __init__(self, palabra_objetivo: str = "perro"):
-        self.palabra_objetivo = palabra_objetivo.lower()
+    def __init__(self, palabra_objetivo: str = None):
+        # Si no se pasa palabra, se elige una al azar
+        self.palabra_objetivo = (palabra_objetivo or random.choice(self.PALABRAS)).lower()
         self.letras_correctas = set()
         self.letras_incorrectas = set()
         self.errores = 0
