@@ -2,14 +2,18 @@ import random
 
 class JuegoAhorcado:
     MAX_ERRORES = 6
-    PALABRAS = ["perro", "gato", "casa", "flor"]
+    PALABRAS = ["perro", "gato", "casa", "flor", "raton", "musica"]
 
-    def __init__(self, palabra_objetivo: str = None):
-        # Si no se pasa palabra, se elige una al azar
-        self.palabra_objetivo = (palabra_objetivo or random.choice(self.PALABRAS)).lower()
+    def __init__(self, aleatoria: bool = False):
+        if aleatoria:
+            self.palabra_objetivo = random.choice(self.PALABRAS).lower()
+        else:
+            self.palabra_objetivo = "perro"
+
         self.letras_correctas = set()
         self.letras_incorrectas = set()
         self.errores = 0
+
 
     def estado_partida(self):
         if all(c in self.letras_correctas for c in self.palabra_objetivo):
@@ -70,30 +74,3 @@ class JuegoAhorcado:
             self.errores += 1
             return self._snapshot(False)
 
-    def jugar_consola(self):  
-
-        print(" Ahorcado — adiviná la palabra")
-        print("Pistas:", "_ " * len(self.palabra_objetivo))
-        while self.estado_partida() is None:
-            print(f"\nPalabra: {self.mostrar_palabra()}    Errores: {self.errores}/{self.MAX_ERRORES}")
-            jugada = input("Ingresá una letra o arriesgá la palabra completa: ").strip()
-
-            if len(jugada) == 1:
-                snap = self.ingresar_letra(jugada)
-            else:
-                snap = self.ingresar_palabra(jugada)
-
-            if snap["acierto"] is True:
-                print("¡Acierto!")
-            elif snap["acierto"] is False:
-                print(" Error.")
-            else:
-                print("Jugada repetida o partida finalizada.")
-
-        estado = self.estado_partida()
-        print(f"\nResultado: {estado.upper()}")
-        print("La palabra era:", self.palabra_objetivo)
-
-
-if __name__ == "__main__": 
-    JuegoAhorcado().jugar_consola()

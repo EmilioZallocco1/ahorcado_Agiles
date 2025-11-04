@@ -132,3 +132,7 @@ def test_GanoYMuestraQueGane():
     assert snap["acierto"] is True
     assert snap["palabra_oculta"] == "perro"
     assert g.estado_partida() == "ganaste"
+
+def test_EligePalabraAleatoria():
+    g = AhorcadoGame(aleatoria=True)
+    assert g.palabra_objetivo in g.PALABRAS
