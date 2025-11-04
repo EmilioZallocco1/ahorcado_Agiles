@@ -136,3 +136,7 @@ def test_GanoYMuestraQueGane():
 def test_EligePalabraAleatoria():
     g = AhorcadoGame(aleatoria=True)
     assert g.palabra_objetivo in g.PALABRAS
+
+def test_NoPidoPalabraAleatoria():
+    g = AhorcadoGame()
+    assert g.palabra_objetivo == "perro"
