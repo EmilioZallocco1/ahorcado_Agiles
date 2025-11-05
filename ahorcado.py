@@ -2,7 +2,7 @@ import random
 
 class JuegoAhorcado:
     MAX_ERRORES = 6
-    PALABRAS = ["perro", "gato", "casa", "flor", "raton", "musica"]
+    PALABRAS = ["perro", "gato", "casa", "flor", "raton", "musica", "futbol", "guitarra", "teclado", "elastico"]
 
     def __init__(self, aleatoria: bool = False):
         if aleatoria:
