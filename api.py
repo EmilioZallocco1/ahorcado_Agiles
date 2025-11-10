@@ -6,7 +6,7 @@ app = FastAPI(title="API del Ahorcado")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -57,3 +57,9 @@ def obtener_estado():
         "letras_incorrectas": list(juego.letras_incorrectas),
         "estado": juego.estado_partida(),
     }
+
+@app.get("/api/debug-palabra")
+def debug_palabra():
+    if juego:
+        return {"palabra": juego.palabra_objetivo}
+    return {"palabra": None}
