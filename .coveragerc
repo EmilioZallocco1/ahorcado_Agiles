@@ -1,0 +1,23 @@
+[run]
+source =
+    .
+omit =
+    */api.py
+    */__init__.py
+    */venv/*
+    */env/*
+    */.venv/*
+    */tests/conftest.py
+
+[report]
+show_missing = True
+exclude_lines =
+    pragma: no cover
+    if __name__ == .__main__.:
+    raise NotImplementedError
+
+[html]
+directory = coverage_html_report
+
+[xml]
+output = coverage.xml
