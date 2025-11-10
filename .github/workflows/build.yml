@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # importante para SonarCloud
+          fetch-depth: 0  # importante para SonarCloud (ver historial completo del repo)
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -33,9 +33,10 @@ jobs:
 
       - name: Run unit tests with coverage (XML + terminal)
         run: |
-          python -m pytest --cov=. \
-                           --cov-report=xml:coverage.xml \
-                           --cov-report=term-missing -v
+          pytest -q --maxfail=1 --disable-warnings \
+                 --cov=. \
+                 --cov-report=xml:coverage.xml \
+                 --cov-report=term-missing -v
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
@@ -43,5 +44,12 @@ jobs:
           args: >
             -Dsonar.organization=emiliozallocco1
             -Dsonar.projectKey=EmilioZallocco1_ahorcado_Agiles
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.python.version=3.11
+            -Dsonar.sources=.
+            -Dsonar.tests=tests
+            -Dsonar.test.inclusions=tests/**/*.py
+            -Dsonar.exclusions=**/venv/**,**/__pycache__/**,**/.pytest_cache/**,**/dist/**,**/build/**,coverage.xml
+            -Dsonar.python.coverage.reportPaths=coverage.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
