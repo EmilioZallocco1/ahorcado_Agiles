@@ -56,7 +56,7 @@ def obtener_estado():
         "estado": juego.estado_partida(),
     }
     if juego.estado_partida() == "perdiste":
-        data["palabra_real"] = juego.palabra_objetivo
+        data["palabra"] = juego.palabra_objetivo
     return data
 
 @app.get("/api/debug-palabra")
