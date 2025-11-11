@@ -1,4 +1,5 @@
 import random
+import secrets
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from ahorcado import JuegoAhorcado
@@ -45,11 +46,12 @@ def jugar_letra(letra: str = Query(..., min_length=1, max_length=1)):
 
 
 
+PALABRAS = ["perro", "gato", "casa", "flor", "raton", "musica", "futbol", "guitarra", "teclado", "elastico"]
+
 @app.get("/palabra")
 def obtener_palabra():
-    palabra = random.choice(["perro", "gato", "casa", "flor", "raton", "musica", "futbol", "guitarra", "teclado", "elastico"])
+    palabra = secrets.choice(PALABRAS)
     return {"palabra": palabra}
-
 
 @app.get("/estado")
 def obtener_estado():
