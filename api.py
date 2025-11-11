@@ -37,12 +37,15 @@ def jugar_letra(letra: str = Query(..., min_length=1, max_length=1)):
         return {"error": "No hay partida activa."}
 
     snap = juego.ingresar_letra(letra)
-    snap["estado"] = juego.estado_partida()
 
-    if snap["estado"] == "perdiste":
+    estado_actual = juego.estado_partida()
+    snap["estado"] = estado_actual
+
+    if estado_actual == "perdiste":
         snap["palabra"] = juego.palabra_objetivo
 
     return snap
+
 
 
 
