@@ -1,3 +1,4 @@
+import random
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from ahorcado import JuegoAhorcado
@@ -37,13 +38,10 @@ def jugar_letra(letra: str = Query(..., min_length=1, max_length=1)):
     return snap
 
 
-@app.post("/palabra")
-def jugar_palabra(palabra: str = Query(...)):
-    if not juego:
-        return {"error": "No hay partida activa."}
-    snap = juego.ingresar_palabra(palabra)
-    snap["estado"] = juego.estado_partida()
-    return snap
+@app.get("/palabra")
+def obtener_palabra():
+    palabra = random.choice(["perro", "gato", "jirafa"])
+    return {"palabra": palabra}
 
 
 @app.get("/estado")
