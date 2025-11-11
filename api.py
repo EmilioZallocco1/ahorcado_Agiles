@@ -40,7 +40,7 @@ def jugar_letra(letra: str = Query(..., min_length=1, max_length=1)):
 
 @app.get("/palabra")
 def obtener_palabra():
-    palabra = random.choice(["perro", "gato", "jirafa"])
+    palabra = random.choice(["perro", "gato", "casa", "flor", "raton", "musica", "futbol", "guitarra", "teclado", "elastico"])
     return {"palabra": palabra}
 
 
