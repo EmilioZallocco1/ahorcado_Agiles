@@ -31,11 +31,18 @@ def nueva_partida(palabra: str = "perro"):
 
 @app.post("/letra")
 def jugar_letra(letra: str = Query(..., min_length=1, max_length=1)):
+    global juego
     if not juego:
         return {"error": "No hay partida activa."}
+
     snap = juego.ingresar_letra(letra)
     snap["estado"] = juego.estado_partida()
+
+    if snap["estado"] == "perdiste":
+        snap["palabra"] = juego.palabra_objetivo
+
     return snap
+
 
 
 @app.get("/palabra")
