@@ -50,13 +50,16 @@ def jugar_palabra(palabra: str = Query(...)):
 def obtener_estado():
     if not juego:
         return {"error": "No hay partida activa."}
-    return {
+    data = {
         "palabra_oculta": juego.mostrar_palabra(),
         "errores": juego.errores,
         "letras_correctas": list(juego.letras_correctas),
         "letras_incorrectas": list(juego.letras_incorrectas),
         "estado": juego.estado_partida(),
     }
+    if juego.estado_partida() == "perdiste":
+        data["palabra_real"] = juego.palabra_objetivo
+    return data
 
 @app.get("/api/debug-palabra")
 def debug_palabra():
