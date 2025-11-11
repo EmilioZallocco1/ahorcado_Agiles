@@ -35,7 +35,9 @@ class JuegoAhorcado:
             "errores": self.errores,
             "letras_correctas": list(self.letras_correctas),
             "letras_incorrectas": list(self.letras_incorrectas),
+            "estado": self.estado_partida(),
         }
+
 
     def ingresar_letra(self, letra: str):
         ch = (letra or "").lower()

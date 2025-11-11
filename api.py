@@ -38,13 +38,11 @@ def jugar_letra(letra: str = Query(..., min_length=1, max_length=1)):
 
     snap = juego.ingresar_letra(letra)
 
-    estado_actual = juego.estado_partida()
-    snap["estado"] = estado_actual
-
-    if estado_actual == "perdiste":
+    if snap["estado"] == "perdiste":
         snap["palabra"] = juego.palabra_objetivo
 
     return snap
+
 
 
 
