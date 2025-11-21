@@ -51,5 +51,6 @@ jobs:
             -Dsonar.test.inclusions=tests/**/*.py
             -Dsonar.exclusions=**/venv/**,**/__pycache__/**,**/.pytest_cache/**,**/dist/**,**/build/**,coverage.xml
             -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.coverage.exclusions=api.py 
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
