@@ -140,3 +140,4 @@ def test_EligePalabraAleatoria():
 def test_NoPidoPalabraAleatoria():
     g = AhorcadoGame()
     assert g.palabra_objetivo == "perro"
+
